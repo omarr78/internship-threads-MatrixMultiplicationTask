@@ -3,6 +3,7 @@ package org.example;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -14,14 +15,12 @@ public class FileHandling {
             Scanner myReader = new Scanner(file);
             while (myReader.hasNextLine()) {
                 String line = myReader.nextLine();
-                String row = line.replaceAll(" ","");
-                List<Integer> rowList = new ArrayList<>();
-                for (int i = 0; i < row.length(); i++) {
-                    char ch = row.charAt(i);
-                    int num = ch - '0';
-                    rowList.add(num);
+                List<Integer> row = new ArrayList<>();
+                String[] lineNumbers = line.split(" ");
+                for(String lineNumber : lineNumbers) {
+                    row.add(Integer.parseInt(lineNumber));
                 }
-                matrix.add(rowList);
+                matrix.add(row);
             }
             myReader.close();
         }catch(FileNotFoundException e){
